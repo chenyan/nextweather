@@ -12,7 +12,7 @@ type Props = {
     weather: WeatherData;
 };
 
-export async function getProps(city_id: string) {
+async function getProps(city_id: string) {
     const city = Cities.find((city) => city.id === parseInt(city_id as string));
 
     if (!city) {
@@ -34,7 +34,7 @@ export async function getProps(city_id: string) {
     };
 }
 
-export default async function ({ params }: { params: {city_id: string}}) {
+export default async function Page({ params }: { params: {city_id: string}}) {
     const { city, weather } = await getProps(params.city_id as string);
     const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
     return (
